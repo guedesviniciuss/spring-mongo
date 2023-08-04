@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class MongoApplication {
@@ -36,6 +37,9 @@ public class MongoApplication {
 
 			Query query = new Query();
 			query.addCriteria(Criteria.where("email").is("viniciusguedes82@gmail.com"));
+
+			Optional<Student> student1 = repository.findByEmail("viniciusguedes82@gmail.com");
+			System.out.println("STUDENT: " + student1.toString());
 
 			List<Student> students = mongoTemplate.find(query, Student.class);
 
